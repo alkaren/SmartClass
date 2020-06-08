@@ -10,7 +10,8 @@
 
                     <asp:BoundField DataField="absen_log" HeaderText="Absen Log"></asp:BoundField>
                     <asp:BoundField DataField="nim" HeaderText="NIM"></asp:BoundField>
-                    <asp:BoundField DataField="idmatkul" HeaderText="Matakuliah"></asp:BoundField>
+                    <asp:BoundField DataField="id_kelas" HeaderText="Kelas"></asp:BoundField>
+                    <asp:BoundField DataField="id_matkul" HeaderText="Matakuliah"></asp:BoundField>
                     <asp:BoundField DataField="nid" HeaderText="Dosen"></asp:BoundField>
                     <asp:BoundField DataField="url_foto" HeaderText="Bukti Kehadiran"></asp:BoundField>
                     <asp:TemplateField HeaderText="Bukti Kehadiran">

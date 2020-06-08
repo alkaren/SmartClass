@@ -23,7 +23,7 @@ namespace TestSmartClass
                 string constr = ConfigurationManager.ConnectionStrings["LocalMySqlServer"].ConnectionString;
                 using (MySqlConnection con = new MySqlConnection(constr))
                 {
-                    using (MySqlCommand cmd = new MySqlCommand("SELECT absen_log,nim,idmatkul,nid,url_foto,tanggal_absen,start_time,last_time from log_tbl"))
+                    using (MySqlCommand cmd = new MySqlCommand("SELECT absen_log,nim,id_kelas,id_matkul,nid,url_foto,tanggal_absen,start_time,last_time from log_tbl"))
                     {
                         using (MySqlDataAdapter da = new MySqlDataAdapter())
                         {
@@ -62,16 +62,16 @@ namespace TestSmartClass
                         conn.Open();
                         for (int i = 0; i < GridView1.Rows.Count; i++)
                         {
-                            string start = GridView1.Rows[i].Cells[7].Text;
-                            string end = GridView1.Rows[i].Cells[8].Text;
-                            iddosen = GridView1.Rows[i].Cells[3].Text;
+                            string start = GridView1.Rows[i].Cells[8].Text;
+                            string end = GridView1.Rows[i].Cells[9].Text;
+                            iddosen = GridView1.Rows[i].Cells[4].Text;
                             DateTime Stime = DateTime.ParseExact(start, "HH:mm:ss",
                                         CultureInfo.InvariantCulture);
                             DateTime Etime = DateTime.ParseExact(end, "HH:mm:ss",
                                         CultureInfo.InvariantCulture);
                             TimeSpan ts = Etime - Stime;
                             string totalmasuk = ts.ToString();
-                            StrQuery = "INSERT INTO absen_tbl (id_absen, nim, idmatkul, nid, url_foto, tanggal_absen, start_detect, last_detect,total_hadir) VALUES('"
+                            StrQuery = "INSERT INTO absen_tbl (id_absen, nim, id_kelas, id_matkul, nid, url_foto, tanggal_absen, start_detect, last_detect,total_hadir) VALUES('"
                                 + GridView1.Rows[i].Cells[0].Text + "', '"
                                 + GridView1.Rows[i].Cells[1].Text + "', '"
                                 + GridView1.Rows[i].Cells[2].Text + "', '"
@@ -80,6 +80,7 @@ namespace TestSmartClass
                                 + GridView1.Rows[i].Cells[6].Text + "', '"
                                 + GridView1.Rows[i].Cells[7].Text + "', '"
                                 + GridView1.Rows[i].Cells[8].Text + "', '"
+                                + GridView1.Rows[i].Cells[9].Text + "', '"
                                 + totalmasuk + "')";
                             comm.CommandText = StrQuery;
                             comm.ExecuteNonQuery();

@@ -5,10 +5,10 @@ date_now = datetime.datetime.now().strftime("%Y-%m-%d")
 time_now = datetime.datetime.now().strftime("%H:%M:%S")
 
 # connection
-connection=pymysql.connect(db='smartclassdb', user='root', passwd='', host='localhost', port=3307)
+connection=pymysql.connect(db='smartclassdb', user='root', passwd='', host='localhost', port=3306)
 cursor = connection.cursor() 
 
-sqljadwal = "SELECT * FROM jadwal_tbl WHERE tanggal_jadwal=%s and idkelas = 'C1'"
+sqljadwal = "SELECT * FROM jadwal_tbl WHERE tanggal_jadwal=%s and id_kelas = 'C1'"
 cursor.execute(sqljadwal, date_now)
 records = cursor.fetchall()
 for row in records:
@@ -18,6 +18,7 @@ for row in records:
     # print(x)
     x = time_now
     if x >= start and x <= end:
+        print(row[2])
         print(row[3])
         print(row[4])
         break

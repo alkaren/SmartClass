@@ -6,7 +6,7 @@ import pymysql
 import datetime
 
 # connection
-connection=pymysql.connect(db='smartclassdb', user='root', passwd='', host='localhost', port=3307)
+connection=pymysql.connect(db='smartclassdb', user='root', passwd='', host='localhost', port=3306)
 cursor = connection.cursor() 
 
 
@@ -45,7 +45,7 @@ while True:
         matkul = "null"
         nid = "null"
 
-        sqljadwal = "SELECT * FROM jadwal_tbl WHERE tanggal_jadwal=%s and idkelas = 'C1'"
+        sqljadwal = "SELECT * FROM jadwal_tbl WHERE tanggal_jadwal=%s and id_kelas = 'C1'"
         cursor.execute(sqljadwal, date_now)
         records = cursor.fetchall()
         for row in records:
@@ -55,12 +55,15 @@ while True:
             # print(x)
             x = time_now
             if x >= start and x <= end:
-                matkul = str(row[3])
-                nid = str(row[4])
+                kelas = str(row[2])
+                nid = str(row[3])
+                matkul = str(row[4])
+                print(row[2])
                 print(row[3])
                 print(row[4])
                 break
             else:
+                kelas = "null"
                 matkul = "null"
                 nid = "null"
                 # print("null")
@@ -76,13 +79,16 @@ while True:
         if confidence < 30 :#If confidence less than 37 then don't print predicted face text on screen
            fr.put_text(test_img,predicted_name,x,y)
            try:
-              cntup += 1
-              print(date_now, time_now)
-              sql = "INSERT INTO log_tbl (absen_log, nim, idmatkul, nid, url_foto, tanggal_absen, start_time, last_time) VALUES(%s,%s,%s,%s,%s,%s,%s,%s) ON DUPLICATE KEY UPDATE last_time= VALUES(last_time)"
-              # sql = "INSERT INTO LOG_TBL(absen_log,NIM,url_foto) VALUES (%s,%s,%s)"
-              cursor.execute(sql, (cntup, predicted_name, matkul, nid, '~/BuktiAbsen/{0}.jpg'.format(predicted_name), date_now, time_now, time_now))
-              connection.commit()
-              cv2.imwrite("C:/Users/alkar/source/repos/TestSmartClass/TestSmartClass/BuktiAbsen/{0}.jpg".format(predicted_name), roi_gray)
+            if nid != "null" :
+                cntup += 1
+                print(date_now, time_now)
+                sql = "INSERT INTO log_tbl (absen_log, nim, id_kelas, id_matkul, nid, url_foto, tanggal_absen, start_time, last_time) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s) ON DUPLICATE KEY UPDATE last_time= VALUES(last_time)"
+                # sql = "INSERT INTO LOG_TBL(absen_log,NIM,url_foto) VALUES (%s,%s,%s)"
+                cursor.execute(sql, (cntup, predicted_name, kelas, matkul, nid, '~/BuktiAbsen/{0}.jpg'.format(predicted_name), date_now, time_now, time_now))
+                connection.commit()
+                cv2.imwrite("C:/Users/alkar/source/repos/TestSmartClass/TestSmartClass/BuktiAbsen/{0}.jpg".format(predicted_name), roi_gray)
+            else:
+                print("tidak ada jadwal")
            except :
              print("insert db failed")
 
