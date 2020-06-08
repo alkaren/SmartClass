@@ -9,7 +9,6 @@ import datetime
 connection=pymysql.connect(db='smartclassdb', user='root', passwd='', host='localhost', port=3307)
 cursor = connection.cursor() 
 
-cntup = 0
 
 #This module captures images via webcam and performs face recognition
 face_recognizer = cv2.face.LBPHFaceRecognizer_create()
@@ -39,6 +38,34 @@ while True:
 
 
     for face in faces_detected:
+        
+        date_now = datetime.datetime.now().strftime("%Y-%m-%d")
+        time_now = datetime.datetime.now().strftime("%H:%M:%S")
+        cntup = 0
+        matkul = "null"
+        nid = "null"
+
+        sqljadwal = "SELECT * FROM jadwal_tbl WHERE tanggal_jadwal=%s and idkelas = 'C1'"
+        cursor.execute(sqljadwal, date_now)
+        records = cursor.fetchall()
+        for row in records:
+            start = row[6]
+            end = row[7]
+            # x = datetime.datetime.strptime('09:30:00','%H:%M:%S').strftime('%H:%M:%S')
+            # print(x)
+            x = time_now
+            if x >= start and x <= end:
+                matkul = str(row[3])
+                nid = str(row[4])
+                print(row[3])
+                print(row[4])
+                break
+            else:
+                matkul = "null"
+                nid = "null"
+                # print("null")
+                continue
+        
         (x,y,w,h)=face
         roi_gray=gray_img[y:y+w, x:x+h]
         label,confidence=face_recognizer.predict(roi_gray)#predicting the label of given image
@@ -50,12 +77,10 @@ while True:
            fr.put_text(test_img,predicted_name,x,y)
            try:
               cntup += 1
-              date_now = datetime.datetime.now().strftime("%Y-%m-%d")
-              time_now = datetime.datetime.now().strftime("%H:%M:%S")
               print(date_now, time_now)
-              sql = "INSERT INTO log_tbl (absen_log, nim, url_foto, tanggal_absen, start_time, last_time, total_time) VALUES(%s,%s,%s,%s,%s,%s,%s) ON DUPLICATE KEY UPDATE last_time= VALUES(last_time)"
+              sql = "INSERT INTO log_tbl (absen_log, nim, idmatkul, nid, url_foto, tanggal_absen, start_time, last_time) VALUES(%s,%s,%s,%s,%s,%s,%s,%s) ON DUPLICATE KEY UPDATE last_time= VALUES(last_time)"
               # sql = "INSERT INTO LOG_TBL(absen_log,NIM,url_foto) VALUES (%s,%s,%s)"
-              cursor.execute(sql, (cntup, predicted_name, '~/BuktiAbsen/{0}.jpg'.format(predicted_name), date_now, time_now, time_now, '0'))
+              cursor.execute(sql, (cntup, predicted_name, matkul, nid, '~/BuktiAbsen/{0}.jpg'.format(predicted_name), date_now, time_now, time_now))
               connection.commit()
               cv2.imwrite("C:/Users/alkar/source/repos/TestSmartClass/TestSmartClass/BuktiAbsen/{0}.jpg".format(predicted_name), roi_gray)
            except :

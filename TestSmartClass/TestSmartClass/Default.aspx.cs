@@ -9,11 +9,13 @@ using System.Web.UI.WebControls;
 using MySql.Data.MySqlClient;
 using System.IO;
 using System.Diagnostics;
+using System.Globalization;
 
 namespace TestSmartClass
 {
     public partial class _Default : Page
     {
+        string iddosen;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!this.IsPostBack)
@@ -21,7 +23,7 @@ namespace TestSmartClass
                 string constr = ConfigurationManager.ConnectionStrings["LocalMySqlServer"].ConnectionString;
                 using (MySqlConnection con = new MySqlConnection(constr))
                 {
-                    using (MySqlCommand cmd = new MySqlCommand("SELECT absen_log,NIM,url_foto,tanggal_absen,start_time,last_time,total_time from log_tbl"))
+                    using (MySqlCommand cmd = new MySqlCommand("SELECT absen_log,nim,idmatkul,nid,url_foto,tanggal_absen,start_time,last_time from log_tbl"))
                     {
                         using (MySqlDataAdapter da = new MySqlDataAdapter())
                         {
@@ -42,48 +44,62 @@ namespace TestSmartClass
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            run_cmd();
+            run();
         }
 
-        private void run_cmd()
+        private void run()
         {
-
-            string fileName = @"D:/git/SmartClass/hello.py";
-
-            Process p = new Process();
-            p.StartInfo = new ProcessStartInfo(@"C:\Python27\python.exe", fileName)
+            string StrQuery;
+            string QueryDel;
+            try
             {
-                RedirectStandardOutput = true,
-                UseShellExecute = false,
-                CreateNoWindow = true
-            };
-            p.Start();
-
-            string output = p.StandardOutput.ReadToEnd();
-            p.WaitForExit();
-
-            Console.WriteLine(output);
-
-            Console.ReadLine();
-
+                string constr = ConfigurationManager.ConnectionStrings["LocalMySqlServer"].ConnectionString;
+                using (MySqlConnection conn = new MySqlConnection(constr))
+                {
+                    using (MySqlCommand comm = new MySqlCommand())
+                    {
+                        comm.Connection = conn;
+                        conn.Open();
+                        for (int i = 0; i < GridView1.Rows.Count; i++)
+                        {
+                            string start = GridView1.Rows[i].Cells[7].Text;
+                            string end = GridView1.Rows[i].Cells[8].Text;
+                            iddosen = GridView1.Rows[i].Cells[3].Text;
+                            DateTime Stime = DateTime.ParseExact(start, "HH:mm:ss",
+                                        CultureInfo.InvariantCulture);
+                            DateTime Etime = DateTime.ParseExact(end, "HH:mm:ss",
+                                        CultureInfo.InvariantCulture);
+                            TimeSpan ts = Etime - Stime;
+                            string totalmasuk = ts.ToString();
+                            StrQuery = "INSERT INTO absen_tbl (id_absen, nim, idmatkul, nid, url_foto, tanggal_absen, start_detect, last_detect,total_hadir) VALUES('"
+                                + GridView1.Rows[i].Cells[0].Text + "', '"
+                                + GridView1.Rows[i].Cells[1].Text + "', '"
+                                + GridView1.Rows[i].Cells[2].Text + "', '"
+                                + GridView1.Rows[i].Cells[3].Text + "', '"
+                                + GridView1.Rows[i].Cells[4].Text + "', '"
+                                + GridView1.Rows[i].Cells[6].Text + "', '"
+                                + GridView1.Rows[i].Cells[7].Text + "', '"
+                                + GridView1.Rows[i].Cells[8].Text + "', '"
+                                + totalmasuk + "')";
+                            comm.CommandText = StrQuery;
+                            comm.ExecuteNonQuery();
+                            conn.Close();
+                        }
+                    }
+                    using (MySqlCommand commdel = new MySqlCommand())
+                    {
+                        commdel.Connection = conn;
+                        conn.Open();
+                        QueryDel = "DELETE FROM log_tbl WHERE nid = '" + iddosen + "'";
+                        commdel.CommandText = QueryDel;
+                        commdel.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch(Exception Ex)
+            {
+                Response.Write("Something Wrong" + Ex);
+            }
         }
-
-        //private void run_cmd(string cmd, string args)
-        //{
-        //    ProcessStartInfo start = new ProcessStartInfo();
-        //    start.FileName = cmd;
-        //    start.Arguments = string.Format("{0} {1}", cmd, args);
-        //    start.UseShellExecute = false;
-        //    start.RedirectStandardOutput = true;
-        //    using (Process process = Process.Start(start))
-        //    {
-        //        using (StreamReader reader = process.StandardOutput)
-        //        {
-        //            string result = reader.ReadToEnd();
-        //            Console.Write(result);
-        //            Console.ReadLine();
-        //        }
-        //    }
-        //}
     }
 }
