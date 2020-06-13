@@ -70,3 +70,5 @@ C:\Users\alkar\source\repos\TestSmartClass\TestSmartClass\obj\Debug\TestSmartCla
 C:\Users\alkar\source\repos\TestSmartClass\TestSmartClass\obj\Debug\TestSmartClass.dll
 C:\Users\alkar\source\repos\TestSmartClass\TestSmartClass\obj\Debug\TestSmartClass.pdb
 C:\Users\alkar\source\repos\TestSmartClass\TestSmartClass\bin\MySql.Data.dll
+C:\Users\alkar\source\repos\TestSmartClass\TestSmartClass\bin\EntityFramework.dll
+C:\Users\alkar\source\repos\TestSmartClass\TestSmartClass\bin\EntityFramework.xml

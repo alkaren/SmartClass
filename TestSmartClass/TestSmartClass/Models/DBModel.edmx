@@ -1,0 +1,319 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="smartclassdbModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="absen_tbl">
+          <Key>
+            <PropertyRef Name="id_absen" />
+          </Key>
+          <Property Name="id_absen" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="nim" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="id_kelas" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_matkul" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nid" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="url_foto" Type="text" Nullable="false" />
+          <Property Name="tanggal_absen" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="start_detect" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="last_detect" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="total_hadir" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="dosen_tbl">
+          <Key>
+            <PropertyRef Name="nid" />
+          </Key>
+          <Property Name="nid" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nama_dosen" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="email_dosen" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="jadwal_tbl">
+          <Key>
+            <PropertyRef Name="id_jadwal" />
+          </Key>
+          <Property Name="id_jadwal" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_ruang" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_kelas" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nid" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_matkul" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="tanggal_jadwal" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="start_kuliah" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="finish_kuliah" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="kelas_tbl">
+          <Key>
+            <PropertyRef Name="id_kelas" />
+          </Key>
+          <Property Name="id_kelas" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nama_kelas" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="usemodel" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="log_tbl">
+          <Key>
+            <PropertyRef Name="nim" />
+          </Key>
+          <Property Name="absen_log" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="nim" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="id_kelas" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_matkul" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nid" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="url_foto" Type="text" Nullable="false" />
+          <Property Name="tanggal_absen" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="start_time" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="last_time" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mahasiswa_tbl">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NIM" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Nama" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="matkul_tbl">
+          <Key>
+            <PropertyRef Name="id_matkul" />
+          </Key>
+          <Property Name="id_matkul" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nama_matkul" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="total_jam" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ruangkuliah_tbl">
+          <Key>
+            <PropertyRef Name="id_ruang" />
+          </Key>
+          <Property Name="id_ruang" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nama_ruang" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="lokasi" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="smartclassdbModelStoreContainer">
+          <EntitySet Name="absen_tbl" EntityType="Self.absen_tbl" Schema="smartclassdb" store:Type="Tables" />
+          <EntitySet Name="dosen_tbl" EntityType="Self.dosen_tbl" Schema="smartclassdb" store:Type="Tables" />
+          <EntitySet Name="jadwal_tbl" EntityType="Self.jadwal_tbl" Schema="smartclassdb" store:Type="Tables" />
+          <EntitySet Name="kelas_tbl" EntityType="Self.kelas_tbl" Schema="smartclassdb" store:Type="Tables" />
+          <EntitySet Name="log_tbl" EntityType="Self.log_tbl" Schema="smartclassdb" store:Type="Tables" />
+          <EntitySet Name="mahasiswa_tbl" EntityType="Self.mahasiswa_tbl" Schema="smartclassdb" store:Type="Tables" />
+          <EntitySet Name="matkul_tbl" EntityType="Self.matkul_tbl" Schema="smartclassdb" store:Type="Tables" />
+          <EntitySet Name="ruangkuliah_tbl" EntityType="Self.ruangkuliah_tbl" Schema="smartclassdb" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="smartclassdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="absen_tbl">
+          <Key>
+            <PropertyRef Name="id_absen" />
+          </Key>
+          <Property Name="id_absen" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nim" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_kelas" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_matkul" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="url_foto" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tanggal_absen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="start_detect" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="last_detect" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="total_hadir" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="dosen_tbl">
+          <Key>
+            <PropertyRef Name="nid" />
+          </Key>
+          <Property Name="nid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nama_dosen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email_dosen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="jadwal_tbl">
+          <Key>
+            <PropertyRef Name="id_jadwal" />
+          </Key>
+          <Property Name="id_jadwal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_ruang" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_kelas" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_matkul" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tanggal_jadwal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="start_kuliah" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="finish_kuliah" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="kelas_tbl">
+          <Key>
+            <PropertyRef Name="id_kelas" />
+          </Key>
+          <Property Name="id_kelas" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nama_kelas" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usemodel" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="log_tbl">
+          <Key>
+            <PropertyRef Name="nim" />
+          </Key>
+          <Property Name="absen_log" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nim" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_kelas" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_matkul" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="url_foto" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tanggal_absen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="start_time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="last_time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mahasiswa_tbl">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NIM" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nama" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="matkul_tbl">
+          <Key>
+            <PropertyRef Name="id_matkul" />
+          </Key>
+          <Property Name="id_matkul" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nama_matkul" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="total_jam" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ruangkuliah_tbl">
+          <Key>
+            <PropertyRef Name="id_ruang" />
+          </Key>
+          <Property Name="id_ruang" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nama_ruang" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="lokasi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="smartclassdbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="absen_tbl" EntityType="Self.absen_tbl" />
+          <EntitySet Name="dosen_tbl" EntityType="Self.dosen_tbl" />
+          <EntitySet Name="jadwal_tbl" EntityType="Self.jadwal_tbl" />
+          <EntitySet Name="kelas_tbl" EntityType="Self.kelas_tbl" />
+          <EntitySet Name="log_tbl" EntityType="Self.log_tbl" />
+          <EntitySet Name="mahasiswa_tbl" EntityType="Self.mahasiswa_tbl" />
+          <EntitySet Name="matkul_tbl" EntityType="Self.matkul_tbl" />
+          <EntitySet Name="ruangkuliah_tbl" EntityType="Self.ruangkuliah_tbl" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="smartclassdbModelStoreContainer" CdmEntityContainer="smartclassdbEntities">
+          <EntitySetMapping Name="absen_tbl">
+            <EntityTypeMapping TypeName="smartclassdbModel.absen_tbl">
+              <MappingFragment StoreEntitySet="absen_tbl">
+                <ScalarProperty Name="id_absen" ColumnName="id_absen" />
+                <ScalarProperty Name="nim" ColumnName="nim" />
+                <ScalarProperty Name="id_kelas" ColumnName="id_kelas" />
+                <ScalarProperty Name="id_matkul" ColumnName="id_matkul" />
+                <ScalarProperty Name="nid" ColumnName="nid" />
+                <ScalarProperty Name="url_foto" ColumnName="url_foto" />
+                <ScalarProperty Name="tanggal_absen" ColumnName="tanggal_absen" />
+                <ScalarProperty Name="start_detect" ColumnName="start_detect" />
+                <ScalarProperty Name="last_detect" ColumnName="last_detect" />
+                <ScalarProperty Name="total_hadir" ColumnName="total_hadir" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dosen_tbl">
+            <EntityTypeMapping TypeName="smartclassdbModel.dosen_tbl">
+              <MappingFragment StoreEntitySet="dosen_tbl">
+                <ScalarProperty Name="nid" ColumnName="nid" />
+                <ScalarProperty Name="nama_dosen" ColumnName="nama_dosen" />
+                <ScalarProperty Name="email_dosen" ColumnName="email_dosen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="jadwal_tbl">
+            <EntityTypeMapping TypeName="smartclassdbModel.jadwal_tbl">
+              <MappingFragment StoreEntitySet="jadwal_tbl">
+                <ScalarProperty Name="id_jadwal" ColumnName="id_jadwal" />
+                <ScalarProperty Name="id_ruang" ColumnName="id_ruang" />
+                <ScalarProperty Name="id_kelas" ColumnName="id_kelas" />
+                <ScalarProperty Name="nid" ColumnName="nid" />
+                <ScalarProperty Name="id_matkul" ColumnName="id_matkul" />
+                <ScalarProperty Name="tanggal_jadwal" ColumnName="tanggal_jadwal" />
+                <ScalarProperty Name="start_kuliah" ColumnName="start_kuliah" />
+                <ScalarProperty Name="finish_kuliah" ColumnName="finish_kuliah" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="kelas_tbl">
+            <EntityTypeMapping TypeName="smartclassdbModel.kelas_tbl">
+              <MappingFragment StoreEntitySet="kelas_tbl">
+                <ScalarProperty Name="id_kelas" ColumnName="id_kelas" />
+                <ScalarProperty Name="nama_kelas" ColumnName="nama_kelas" />
+                <ScalarProperty Name="usemodel" ColumnName="usemodel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="log_tbl">
+            <EntityTypeMapping TypeName="smartclassdbModel.log_tbl">
+              <MappingFragment StoreEntitySet="log_tbl">
+                <ScalarProperty Name="absen_log" ColumnName="absen_log" />
+                <ScalarProperty Name="nim" ColumnName="nim" />
+                <ScalarProperty Name="id_kelas" ColumnName="id_kelas" />
+                <ScalarProperty Name="id_matkul" ColumnName="id_matkul" />
+                <ScalarProperty Name="nid" ColumnName="nid" />
+                <ScalarProperty Name="url_foto" ColumnName="url_foto" />
+                <ScalarProperty Name="tanggal_absen" ColumnName="tanggal_absen" />
+                <ScalarProperty Name="start_time" ColumnName="start_time" />
+                <ScalarProperty Name="last_time" ColumnName="last_time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mahasiswa_tbl">
+            <EntityTypeMapping TypeName="smartclassdbModel.mahasiswa_tbl">
+              <MappingFragment StoreEntitySet="mahasiswa_tbl">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="NIM" ColumnName="NIM" />
+                <ScalarProperty Name="Nama" ColumnName="Nama" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="matkul_tbl">
+            <EntityTypeMapping TypeName="smartclassdbModel.matkul_tbl">
+              <MappingFragment StoreEntitySet="matkul_tbl">
+                <ScalarProperty Name="id_matkul" ColumnName="id_matkul" />
+                <ScalarProperty Name="nama_matkul" ColumnName="nama_matkul" />
+                <ScalarProperty Name="total_jam" ColumnName="total_jam" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ruangkuliah_tbl">
+            <EntityTypeMapping TypeName="smartclassdbModel.ruangkuliah_tbl">
+              <MappingFragment StoreEntitySet="ruangkuliah_tbl">
+                <ScalarProperty Name="id_ruang" ColumnName="id_ruang" />
+                <ScalarProperty Name="nama_ruang" ColumnName="nama_ruang" />
+                <ScalarProperty Name="lokasi" ColumnName="lokasi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

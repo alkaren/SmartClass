@@ -44,6 +44,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="MySql.Data, Version=6.9.12.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.6.9.12\lib\net45\MySql.Data.dll</HintPath>
@@ -53,6 +56,9 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
@@ -109,6 +115,88 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="Assets\css\adminlte.css" />
+    <Content Include="Assets\css\adminlte.min.css" />
+    <Content Include="Assets\css\alt\adminlte.components.css" />
+    <Content Include="Assets\css\alt\adminlte.components.min.css" />
+    <Content Include="Assets\css\alt\adminlte.core.css" />
+    <Content Include="Assets\css\alt\adminlte.core.min.css" />
+    <Content Include="Assets\css\alt\adminlte.extra-components.css" />
+    <Content Include="Assets\css\alt\adminlte.extra-components.min.css" />
+    <Content Include="Assets\css\alt\adminlte.pages.css" />
+    <Content Include="Assets\css\alt\adminlte.pages.min.css" />
+    <Content Include="Assets\css\alt\adminlte.plugins.css" />
+    <Content Include="Assets\css\alt\adminlte.plugins.min.css" />
+    <Content Include="Assets\css\docs.css" />
+    <Content Include="Assets\css\hasil.css" />
+    <Content Include="Assets\css\highlighter.css" />
+    <Content Include="Assets\img\AdminLTELogo.png" />
+    <Content Include="Assets\img\logo-xl.png" />
+    <Content Include="Assets\img\logo-xs.png" />
+    <Content Include="Assets\img\user1-128x128.jpg" />
+    <Content Include="Assets\img\user3-128x128.jpg" />
+    <Content Include="Assets\img\user4-128x128.jpg" />
+    <Content Include="Assets\img\user5-128x128.jpg" />
+    <Content Include="Assets\img\user6-128x128.jpg" />
+    <Content Include="Assets\img\user7-128x128.jpg" />
+    <Content Include="Assets\img\user8-128x128.jpg" />
+    <Content Include="Assets\js\adminlte.js" />
+    <Content Include="Assets\js\adminlte.min.js" />
+    <Content Include="Assets\js\demo.js" />
+    <Content Include="Assets\js\hasil.js" />
+    <Content Include="Assets\js\pages\dashboard.js" />
+    <Content Include="Assets\js\pages\dashboard2.js" />
+    <Content Include="Assets\js\pages\dashboard3.js" />
+    <Content Include="Assets\plugins\bootstrap\js\bootstrap.bundle.js" />
+    <Content Include="Assets\plugins\bootstrap\js\bootstrap.bundle.min.js" />
+    <Content Include="Assets\plugins\bootstrap\js\bootstrap.js" />
+    <Content Include="Assets\plugins\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Assets\plugins\datatables-bs4\css\dataTables.bootstrap4.css" />
+    <Content Include="Assets\plugins\datatables-bs4\css\dataTables.bootstrap4.min.css" />
+    <Content Include="Assets\plugins\datatables-bs4\js\dataTables.bootstrap4.js" />
+    <Content Include="Assets\plugins\datatables-bs4\js\dataTables.bootstrap4.min.js" />
+    <Content Include="Assets\plugins\datatables\jquery.dataTables.js" />
+    <Content Include="Assets\plugins\datatables\jquery.dataTables.min.js" />
+    <Content Include="Assets\plugins\fontawesome-free\css\all.css" />
+    <Content Include="Assets\plugins\fontawesome-free\css\all.min.css" />
+    <Content Include="Assets\plugins\fontawesome-free\css\brands.css" />
+    <Content Include="Assets\plugins\fontawesome-free\css\brands.min.css" />
+    <Content Include="Assets\plugins\fontawesome-free\css\fontawesome.css" />
+    <Content Include="Assets\plugins\fontawesome-free\css\fontawesome.min.css" />
+    <Content Include="Assets\plugins\fontawesome-free\css\regular.css" />
+    <Content Include="Assets\plugins\fontawesome-free\css\regular.min.css" />
+    <Content Include="Assets\plugins\fontawesome-free\css\solid.css" />
+    <Content Include="Assets\plugins\fontawesome-free\css\solid.min.css" />
+    <Content Include="Assets\plugins\fontawesome-free\css\svg-with-js.css" />
+    <Content Include="Assets\plugins\fontawesome-free\css\svg-with-js.min.css" />
+    <Content Include="Assets\plugins\fontawesome-free\css\v4-shims.css" />
+    <Content Include="Assets\plugins\fontawesome-free\css\v4-shims.min.css" />
+    <Content Include="Assets\plugins\fontawesome-free\webfonts\fa-brands-400.svg" />
+    <Content Include="Assets\plugins\fontawesome-free\webfonts\fa-regular-400.svg" />
+    <Content Include="Assets\plugins\fontawesome-free\webfonts\fa-solid-900.svg" />
+    <Content Include="Assets\plugins\jquery\core.js" />
+    <Content Include="Assets\plugins\jquery\jquery.js" />
+    <Content Include="Assets\plugins\jquery\jquery.min.js" />
+    <Content Include="Assets\plugins\jquery\jquery.slim.js" />
+    <Content Include="Assets\plugins\jquery\jquery.slim.min.js" />
+    <Content Include="Assets\plugins\overlayScrollbars\css\OverlayScrollbars.css" />
+    <Content Include="Assets\plugins\overlayScrollbars\css\OverlayScrollbars.min.css" />
+    <Content Include="Assets\plugins\overlayScrollbars\js\jquery.overlayScrollbars.js" />
+    <Content Include="Assets\plugins\overlayScrollbars\js\jquery.overlayScrollbars.min.js" />
+    <Content Include="Assets\plugins\overlayScrollbars\js\OverlayScrollbars.js" />
+    <Content Include="Assets\plugins\overlayScrollbars\js\OverlayScrollbars.min.js" />
+    <Content Include="Assets\plugins\popper\esm\popper-utils.js" />
+    <Content Include="Assets\plugins\popper\esm\popper-utils.min.js" />
+    <Content Include="Assets\plugins\popper\esm\popper.js" />
+    <Content Include="Assets\plugins\popper\esm\popper.min.js" />
+    <Content Include="Assets\plugins\popper\popper-utils.js" />
+    <Content Include="Assets\plugins\popper\popper-utils.min.js" />
+    <Content Include="Assets\plugins\popper\popper.js" />
+    <Content Include="Assets\plugins\popper\popper.min.js" />
+    <Content Include="Assets\plugins\popper\umd\popper-utils.js" />
+    <Content Include="Assets\plugins\popper\umd\popper-utils.min.js" />
+    <Content Include="Assets\plugins\popper\umd\popper.js" />
+    <Content Include="Assets\plugins\popper\umd\popper.min.js" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -127,7 +215,72 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <EntityDeploy Include="Models\DBModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DBModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\DBModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DBModel.edmx</DependentUpon>
+      <LastGenOutput>DBModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\DBModel.edmx.diagram">
+      <DependentUpon>DBModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\DBModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DBModel.edmx</DependentUpon>
+      <LastGenOutput>DBModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Pages\Master\Main.Master" />
+    <Content Include="Assets\css\adminlte.css.map" />
+    <Content Include="Assets\css\adminlte.min.css.map" />
+    <Content Include="Assets\css\alt\adminlte.components.css.map" />
+    <Content Include="Assets\css\alt\adminlte.components.min.css.map" />
+    <Content Include="Assets\css\alt\adminlte.core.css.map" />
+    <Content Include="Assets\css\alt\adminlte.core.min.css.map" />
+    <Content Include="Assets\css\alt\adminlte.extra-components.css.map" />
+    <Content Include="Assets\css\alt\adminlte.extra-components.min.css.map" />
+    <Content Include="Assets\css\alt\adminlte.pages.css.map" />
+    <Content Include="Assets\css\alt\adminlte.pages.min.css.map" />
+    <Content Include="Assets\css\alt\adminlte.plugins.css.map" />
+    <Content Include="Assets\css\alt\adminlte.plugins.min.css.map" />
+    <Content Include="Assets\js\adminlte.js.map" />
+    <Content Include="Assets\js\adminlte.min.js.map" />
+    <Content Include="Assets\plugins\bootstrap\js\bootstrap.bundle.js.map" />
+    <Content Include="Assets\plugins\bootstrap\js\bootstrap.bundle.min.js.map" />
+    <Content Include="Assets\plugins\bootstrap\js\bootstrap.js.map" />
+    <Content Include="Assets\plugins\bootstrap\js\bootstrap.min.js.map" />
+    <Content Include="Assets\plugins\fontawesome-free\webfonts\fa-brands-400.eot" />
+    <Content Include="Assets\plugins\fontawesome-free\webfonts\fa-brands-400.ttf" />
+    <Content Include="Assets\plugins\fontawesome-free\webfonts\fa-brands-400.woff" />
+    <Content Include="Assets\plugins\fontawesome-free\webfonts\fa-brands-400.woff2" />
+    <Content Include="Assets\plugins\fontawesome-free\webfonts\fa-regular-400.eot" />
+    <Content Include="Assets\plugins\fontawesome-free\webfonts\fa-regular-400.ttf" />
+    <Content Include="Assets\plugins\fontawesome-free\webfonts\fa-regular-400.woff" />
+    <Content Include="Assets\plugins\fontawesome-free\webfonts\fa-regular-400.woff2" />
+    <Content Include="Assets\plugins\fontawesome-free\webfonts\fa-solid-900.eot" />
+    <Content Include="Assets\plugins\fontawesome-free\webfonts\fa-solid-900.ttf" />
+    <Content Include="Assets\plugins\fontawesome-free\webfonts\fa-solid-900.woff" />
+    <Content Include="Assets\plugins\fontawesome-free\webfonts\fa-solid-900.woff2" />
+    <Content Include="Assets\plugins\jquery\jquery.min.map" />
+    <Content Include="Assets\plugins\jquery\jquery.slim.min.map" />
+    <Content Include="Assets\plugins\popper\esm\popper-utils.js.map" />
+    <Content Include="Assets\plugins\popper\esm\popper-utils.min.js.map" />
+    <Content Include="Assets\plugins\popper\esm\popper.js.map" />
+    <Content Include="Assets\plugins\popper\esm\popper.min.js.map" />
+    <Content Include="Assets\plugins\popper\popper-utils.js.map" />
+    <Content Include="Assets\plugins\popper\popper-utils.min.js.map" />
+    <Content Include="Assets\plugins\popper\popper.js.map" />
+    <Content Include="Assets\plugins\popper\popper.min.js.map" />
+    <Content Include="Assets\plugins\popper\umd\popper-utils.js.map" />
+    <Content Include="Assets\plugins\popper\umd\popper-utils.min.js.map" />
+    <Content Include="Assets\plugins\popper\umd\popper.js.flow" />
+    <Content Include="Assets\plugins\popper\umd\popper.js.map" />
+    <Content Include="Assets\plugins\popper\umd\popper.min.js.map" />
+    <Content Include="Assets\plugins\popper\umd\poppper.js.flow" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Pages\Private\MasterMahasiswa.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -179,6 +332,7 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\MahasiswaControlls.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -188,6 +342,60 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\Interfaces.cs" />
+    <Compile Include="Models\absen_tbl.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DBModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DBModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DBModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\dosen_tbl.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\jadwal_tbl.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\kelas_tbl.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\log_tbl.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\mahasiswa_tbl.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\matkul_tbl.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ruangkuliah_tbl.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Master\Main.Master.cs">
+      <DependentUpon>Main.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Master\Main.Master.designer.cs">
+      <DependentUpon>Main.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\MasterMahasiswa.aspx.cs">
+      <DependentUpon>MasterMahasiswa.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\MasterMahasiswa.aspx.designer.cs">
+      <DependentUpon>MasterMahasiswa.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
@@ -226,6 +434,9 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

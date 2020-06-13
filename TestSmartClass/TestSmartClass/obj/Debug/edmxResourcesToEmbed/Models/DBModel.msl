@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="smartclassdbModelStoreContainer" CdmEntityContainer="SmartClassContext">
+    <EntitySetMapping Name="absen_tbl">
+      <EntityTypeMapping TypeName="smartclassdbModel.absen_tbl">
+        <MappingFragment StoreEntitySet="absen_tbl">
+          <ScalarProperty Name="id_absen" ColumnName="id_absen" />
+          <ScalarProperty Name="nim" ColumnName="nim" />
+          <ScalarProperty Name="id_kelas" ColumnName="id_kelas" />
+          <ScalarProperty Name="id_matkul" ColumnName="id_matkul" />
+          <ScalarProperty Name="nid" ColumnName="nid" />
+          <ScalarProperty Name="url_foto" ColumnName="url_foto" />
+          <ScalarProperty Name="tanggal_absen" ColumnName="tanggal_absen" />
+          <ScalarProperty Name="start_detect" ColumnName="start_detect" />
+          <ScalarProperty Name="last_detect" ColumnName="last_detect" />
+          <ScalarProperty Name="total_hadir" ColumnName="total_hadir" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="dosen_tbl">
+      <EntityTypeMapping TypeName="smartclassdbModel.dosen_tbl">
+        <MappingFragment StoreEntitySet="dosen_tbl">
+          <ScalarProperty Name="nid" ColumnName="nid" />
+          <ScalarProperty Name="nama_dosen" ColumnName="nama_dosen" />
+          <ScalarProperty Name="email_dosen" ColumnName="email_dosen" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="jadwal_tbl">
+      <EntityTypeMapping TypeName="smartclassdbModel.jadwal_tbl">
+        <MappingFragment StoreEntitySet="jadwal_tbl">
+          <ScalarProperty Name="id_jadwal" ColumnName="id_jadwal" />
+          <ScalarProperty Name="id_ruang" ColumnName="id_ruang" />
+          <ScalarProperty Name="id_kelas" ColumnName="id_kelas" />
+          <ScalarProperty Name="nid" ColumnName="nid" />
+          <ScalarProperty Name="id_matkul" ColumnName="id_matkul" />
+          <ScalarProperty Name="tanggal_jadwal" ColumnName="tanggal_jadwal" />
+          <ScalarProperty Name="start_kuliah" ColumnName="start_kuliah" />
+          <ScalarProperty Name="finish_kuliah" ColumnName="finish_kuliah" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="kelas_tbl">
+      <EntityTypeMapping TypeName="smartclassdbModel.kelas_tbl">
+        <MappingFragment StoreEntitySet="kelas_tbl">
+          <ScalarProperty Name="id_kelas" ColumnName="id_kelas" />
+          <ScalarProperty Name="nama_kelas" ColumnName="nama_kelas" />
+          <ScalarProperty Name="usemodel" ColumnName="usemodel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="log_tbl">
+      <EntityTypeMapping TypeName="smartclassdbModel.log_tbl">
+        <MappingFragment StoreEntitySet="log_tbl">
+          <ScalarProperty Name="absen_log" ColumnName="absen_log" />
+          <ScalarProperty Name="nim" ColumnName="nim" />
+          <ScalarProperty Name="id_kelas" ColumnName="id_kelas" />
+          <ScalarProperty Name="id_matkul" ColumnName="id_matkul" />
+          <ScalarProperty Name="nid" ColumnName="nid" />
+          <ScalarProperty Name="url_foto" ColumnName="url_foto" />
+          <ScalarProperty Name="tanggal_absen" ColumnName="tanggal_absen" />
+          <ScalarProperty Name="start_time" ColumnName="start_time" />
+          <ScalarProperty Name="last_time" ColumnName="last_time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="matkul_tbl">
+      <EntityTypeMapping TypeName="smartclassdbModel.matkul_tbl">
+        <MappingFragment StoreEntitySet="matkul_tbl">
+          <ScalarProperty Name="id_matkul" ColumnName="id_matkul" />
+          <ScalarProperty Name="nama_matkul" ColumnName="nama_matkul" />
+          <ScalarProperty Name="total_jam" ColumnName="total_jam" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ruangkuliah_tbl">
+      <EntityTypeMapping TypeName="smartclassdbModel.ruangkuliah_tbl">
+        <MappingFragment StoreEntitySet="ruangkuliah_tbl">
+          <ScalarProperty Name="id_ruang" ColumnName="id_ruang" />
+          <ScalarProperty Name="nama_ruang" ColumnName="nama_ruang" />
+          <ScalarProperty Name="lokasi" ColumnName="lokasi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mahasiswa_tbl">
+      <EntityTypeMapping TypeName="smartclassdbModel.mahasiswa_tbl">
+        <MappingFragment StoreEntitySet="mahasiswa_tbl">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="NIM" ColumnName="NIM" />
+          <ScalarProperty Name="Nama" ColumnName="Nama" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

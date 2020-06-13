@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="smartclassdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="absen_tbl">
+    <Key>
+      <PropertyRef Name="id_absen" />
+    </Key>
+    <Property Name="id_absen" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nim" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_kelas" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_matkul" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="url_foto" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tanggal_absen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="start_detect" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="last_detect" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="total_hadir" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="dosen_tbl">
+    <Key>
+      <PropertyRef Name="nid" />
+    </Key>
+    <Property Name="nid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nama_dosen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email_dosen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="jadwal_tbl">
+    <Key>
+      <PropertyRef Name="id_jadwal" />
+    </Key>
+    <Property Name="id_jadwal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_ruang" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_kelas" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_matkul" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tanggal_jadwal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="start_kuliah" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="finish_kuliah" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="kelas_tbl">
+    <Key>
+      <PropertyRef Name="id_kelas" />
+    </Key>
+    <Property Name="id_kelas" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nama_kelas" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="usemodel" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="log_tbl">
+    <Key>
+      <PropertyRef Name="nim" />
+    </Key>
+    <Property Name="absen_log" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nim" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_kelas" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_matkul" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="url_foto" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tanggal_absen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="start_time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="last_time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="matkul_tbl">
+    <Key>
+      <PropertyRef Name="id_matkul" />
+    </Key>
+    <Property Name="id_matkul" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nama_matkul" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="total_jam" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ruangkuliah_tbl">
+    <Key>
+      <PropertyRef Name="id_ruang" />
+    </Key>
+    <Property Name="id_ruang" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nama_ruang" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="lokasi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="mahasiswa_tbl">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="NIM" />
+      <PropertyRef Name="Nama" />
+      <PropertyRef Name="Email" />
+    </Key>
+    <Property Name="id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NIM" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Nama" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="SmartClassContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="absen_tbl" EntityType="Self.absen_tbl" />
+    <EntitySet Name="dosen_tbl" EntityType="Self.dosen_tbl" />
+    <EntitySet Name="jadwal_tbl" EntityType="Self.jadwal_tbl" />
+    <EntitySet Name="kelas_tbl" EntityType="Self.kelas_tbl" />
+    <EntitySet Name="log_tbl" EntityType="Self.log_tbl" />
+    <EntitySet Name="matkul_tbl" EntityType="Self.matkul_tbl" />
+    <EntitySet Name="ruangkuliah_tbl" EntityType="Self.ruangkuliah_tbl" />
+    <EntitySet Name="mahasiswa_tbl" EntityType="Self.mahasiswa_tbl" />
+  </EntityContainer>
+</Schema>
