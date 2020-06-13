@@ -13,10 +13,10 @@ namespace TestSmartClass.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class smartclassdbEntities : DbContext
+    public partial class smartclassdbContext : DbContext
     {
-        public smartclassdbEntities()
-            : base("name=smartclassdbEntities")
+        public smartclassdbContext()
+            : base("name=smartclassdbContext")
         {
         }
     

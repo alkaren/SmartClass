@@ -47,7 +47,6 @@
           </Key>
           <Property Name="id_kelas" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="nama_kelas" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="usemodel" Type="text" Nullable="false" />
         </EntityType>
         <EntityType Name="log_tbl">
           <Key>
@@ -145,7 +144,6 @@
           </Key>
           <Property Name="id_kelas" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="nama_kelas" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="usemodel" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityType Name="log_tbl">
           <Key>
@@ -186,7 +184,7 @@
           <Property Name="nama_ruang" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="lokasi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
-        <EntityContainer Name="smartclassdbEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="smartclassdbContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="absen_tbl" EntityType="Self.absen_tbl" />
           <EntitySet Name="dosen_tbl" EntityType="Self.dosen_tbl" />
           <EntitySet Name="jadwal_tbl" EntityType="Self.jadwal_tbl" />
@@ -201,7 +199,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="smartclassdbModelStoreContainer" CdmEntityContainer="smartclassdbEntities">
+        <EntityContainerMapping StorageEntityContainer="smartclassdbModelStoreContainer" CdmEntityContainer="smartclassdbContext">
           <EntitySetMapping Name="absen_tbl">
             <EntityTypeMapping TypeName="smartclassdbModel.absen_tbl">
               <MappingFragment StoreEntitySet="absen_tbl">
@@ -246,7 +244,6 @@
               <MappingFragment StoreEntitySet="kelas_tbl">
                 <ScalarProperty Name="id_kelas" ColumnName="id_kelas" />
                 <ScalarProperty Name="nama_kelas" ColumnName="nama_kelas" />
-                <ScalarProperty Name="usemodel" ColumnName="usemodel" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

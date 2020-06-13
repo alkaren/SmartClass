@@ -16,6 +16,5 @@ namespace TestSmartClass.Models
     {
         public string id_kelas { get; set; }
         public string nama_kelas { get; set; }
-        public string usemodel { get; set; }
     }
 }

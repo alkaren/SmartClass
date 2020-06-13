@@ -215,22 +215,15 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <EntityDeploy Include="Models\DBModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DBModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\DBModel.Context.tt">
+    <Content Include="Models\Smartclassmodel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DBModel.edmx</DependentUpon>
-      <LastGenOutput>DBModel.Context.cs</LastGenOutput>
+      <DependentUpon>Smartclassmodel.edmx</DependentUpon>
+      <LastGenOutput>Smartclassmodel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\DBModel.edmx.diagram">
-      <DependentUpon>DBModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\DBModel.tt">
+    <Content Include="Models\Smartclassmodel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DBModel.edmx</DependentUpon>
-      <LastGenOutput>DBModel.cs</LastGenOutput>
+      <DependentUpon>Smartclassmodel.edmx</DependentUpon>
+      <LastGenOutput>Smartclassmodel.cs</LastGenOutput>
     </Content>
     <Content Include="Pages\Master\Main.Master" />
     <Content Include="Assets\css\adminlte.css.map" />
@@ -279,6 +272,13 @@
     <Content Include="Assets\plugins\popper\umd\popper.js.map" />
     <Content Include="Assets\plugins\popper\umd\popper.min.js.map" />
     <Content Include="Assets\plugins\popper\umd\poppper.js.flow" />
+    <EntityDeploy Include="Models\Smartclassmodel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Smartclassmodel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Smartclassmodel.edmx.diagram">
+      <DependentUpon>Smartclassmodel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Pages\Private\MasterMahasiswa.aspx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -332,7 +332,6 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\MahasiswaControlls.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -345,43 +344,43 @@
     </Compile>
     <Compile Include="Helpers\Interfaces.cs" />
     <Compile Include="Models\absen_tbl.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DBModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DBModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DBModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBModel.edmx</DependentUpon>
+      <DependentUpon>Smartclassmodel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\dosen_tbl.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
+      <DependentUpon>Smartclassmodel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\jadwal_tbl.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
+      <DependentUpon>Smartclassmodel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\kelas_tbl.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
+      <DependentUpon>Smartclassmodel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\log_tbl.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
+      <DependentUpon>Smartclassmodel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\mahasiswa_tbl.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
+      <DependentUpon>Smartclassmodel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\matkul_tbl.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
+      <DependentUpon>Smartclassmodel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ruangkuliah_tbl.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
+      <DependentUpon>Smartclassmodel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Smartclassmodel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Smartclassmodel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Smartclassmodel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Smartclassmodel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Smartclassmodel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Smartclassmodel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Master\Main.Master.cs">
       <DependentUpon>Main.Master</DependentUpon>
@@ -423,6 +422,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="BuktiAbsen\" />
+    <Folder Include="Controllers\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

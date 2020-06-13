@@ -4,23 +4,24 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using TestSmartClass.Controllers;
 using TestSmartClass.Models;
 
 namespace TestSmartClass.Pages.Private
 {
+    
     public partial class MasterMahasiswa : System.Web.UI.Page
     {
-        MahasiswaControlls mahasiswaControl = new MahasiswaControlls();
+        smartclassdbContext context = new smartclassdbContext();
+        //MahasiswaControlls mahasiswaControl = new MahasiswaControlls();
         enum ModeForm { ViewData, UpdateData, DetailData, AddData }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                RefreshGrid();
+                BindGrid();
             }
 
-            //GvData.RowCommand += GvData_RowCommand;
+            GvData.RowCommand += GvData_RowCommand;
         }
 
         #region Custom function
@@ -38,32 +39,46 @@ namespace TestSmartClass.Pages.Private
         //}
 
         // Reload datagrid
-        void RefreshGrid(string param = "")
+        void BindGrid(string param = "")
         {
-            GvData.DataBind();
 
-            if (param == null || param == "")
+            using (smartclassdbContext context = new smartclassdbContext())
             {
-                var ret = mahasiswaControl.GetData();
-                var datas = ret.ToArray();
-
-                if (datas != null && datas.Count() > 0)
+                if (context.mahasiswa_tbl.Count() > 0)
                 {
-                    GvData.DataSource = datas;
+                    GvData.DataSource = (from mh in context.mahasiswa_tbl select mh).ToList();
+                    GvData.DataBind();
+                }
+                else
+                {
+                    GvData.DataSource = null;
                     GvData.DataBind();
                 }
             }
-            else
-            {
-                var ret = mahasiswaControl.GetDataByContaint(param);
-                var datas = ret.Result;
+            //GvData.DataBind();
 
-                if (datas != null && datas.Count() > 0)
-                {
-                    GvData.DataSource = datas;
-                    GvData.DataBind();
-                }
-            }
+            //if (param == null || param == "")
+            //{
+            //    var ret = mahasiswaControl.GetData();
+            //    var datas = ret.ToArray();
+
+            //    if (datas != null && datas.Count() > 0)
+            //    {
+            //        GvData.DataSource = datas;
+            //        GvData.DataBind();
+            //    }
+            //}
+            //else
+            //{
+            //    var ret = mahasiswaControl.GetDataByContaint(param);
+            //    var datas = ret.Result;
+
+            //    if (datas != null && datas.Count() > 0)
+            //    {
+            //        GvData.DataSource = datas;
+            //        GvData.DataBind();
+            //    }
+            //}
 
             //if (GvData.Rows.Count > 0)
             //{
@@ -78,32 +93,23 @@ namespace TestSmartClass.Pages.Private
             //}
         }
 
-        //void LoadDetail(string fid)
-        //{
-        //    var ret = customerControl.DetailData(fid);
-        //    var data = ret.Result;
+        void LoadDetail(string fid)
+        {
 
-        //    if (data != null)
-        //    {
-        //        TxtCustomerNo.Text = data.customerNo.ToString();
-        //        TxtCustomerName.Text = data.customerName;
-        //        TxtCusEmail.Text = data.customerEmail;
-        //        TxtCompanyName.Text = data.companyName;
-        //        TxtCompanyAddress.Text = data.companyAddress;
-        //        TxtPhoneNo.Text = data.companyPhone;
-        //        TxtComEmail.Text = data.companyEmail;
+            var ret = (from mh in context.mahasiswa_tbl select mh).Where(mh => mh.id == fid).FirstOrDefault();
 
-        //        if (data.accountNo != null)
-        //        {
-        //            TxtAccountNo.SelectedIndex = TxtAccountNo.Items.IndexOf(
-        //                TxtAccountNo.Items.FindByValue(data.accountNo.ToString()));
-        //        }
-        //        else
-        //        {
-        //            TxtAccountNo.SelectedIndex = 0;
-        //        }
-        //    }
-        //}
+            if (ret != null)
+            {
+                TxtId.Text = ret.id;
+                TxtNim.Text = ret.NIM;
+                TxtNama.Text = ret.Nama;
+                TxtEmail.Text = ret.Email;
+            }
+            else
+            {
+                Alert("ID tidak ditemukan");
+            }
+        }
 
         //private void DoUpdate()
         //{
@@ -142,47 +148,93 @@ namespace TestSmartClass.Pages.Private
 
         private void DoSave()
         {
-            var data = new mahasiswa_tbl
+            try
             {
-                id = TxtId.Text,
-                NIM = TxtNim.Text,
-                Nama = TxtNama.Text,
-                Email = TxtEmail.Text
-            };
-
-            //if (TxtAccountNo.SelectedValue != "-1")
-            //{
-            //    data.accountNo = ParseInt(TxtAccountNo.SelectedValue);
-            //}
-
-            var ret = mahasiswaControl.AddData(data);
-
-            if (ret != false )
-            {
-                //ClearFields();
-                SetLayout(ModeForm.ViewData);
-                Alert("data berhasil disimpan");
+                using (smartclassdbContext context = new smartclassdbContext())
+                {
+                    if(context != null)
+                    {
+                        mahasiswa_tbl obj = new mahasiswa_tbl();
+                        obj.id = TxtId.Text;
+                        obj.NIM = TxtNim.Text;
+                        obj.Nama = TxtNama.Text;
+                        obj.Email = TxtEmail.Text;
+                        context.mahasiswa_tbl.Add(obj);
+                        context.SaveChanges();
+                        SetLayout(ModeForm.ViewData);
+                        Alert("data berhasil disimpan");
+                    }
+                    else
+                    {
+                        Alert("Data gagal disimpan");
+                    }
+                }
             }
-            else
+            catch(Exception ex)
             {
-                Alert("Gagal menyimpan data");
+                Console.WriteLine(ex.Message);
             }
         }
 
-        //private void DoDelete(string id)
-        //{
-        //    var ret = customerControl.DeleteData(id);
+        private void DoUpdate()
+        {
+            try
+            {
+                using (smartclassdbContext context = new smartclassdbContext())
+                {
+                    if (context != null)
+                    {
+                        var mahasiswas = context.mahasiswa_tbl.Where(x => x.id == TxtId.Text);
 
-        //    if (ret.Result)
-        //    {
-        //        RefreshGrid();
-        //        Alert("Data berhasil dihapus");
-        //    }
-        //    else
-        //    {
-        //        Alert("Gagal menghapus data");
-        //    }
-        //}
+                        foreach (var mahasiswa in mahasiswas)
+                        {
+                            // change the properties
+                            mahasiswa.id = TxtId.Text;
+                            mahasiswa.NIM = TxtNim.Text;
+                            mahasiswa.Nama = TxtNama.Text;
+                            mahasiswa.Email = TxtEmail.Text;
+                            //context.mahasiswa_tbl(obj);
+                            
+                        }
+                        context.SaveChanges();
+                        SetLayout(ModeForm.ViewData);
+                        Alert("data berhasil diupdate");
+                        // EF will pick up those changes and save back to the database.
+
+                    }
+                    else
+                    {
+                        Alert("Data gagal disimpan");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private void DoDelete(string id)
+        {
+            try
+            {
+                if(id != null)
+                {
+                    mahasiswa_tbl obj = context.mahasiswa_tbl.First(x => x.id == id);
+                    context.mahasiswa_tbl.Remove(obj);
+                    context.SaveChanges();
+                    BindGrid();
+                }
+                else
+                {
+                    Alert("Id Tidak Ditemukan");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
 
         // DropDown Generator
 
@@ -224,32 +276,32 @@ namespace TestSmartClass.Pages.Private
         protected void GvData_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             GvData.PageIndex = e.NewPageIndex;
-            RefreshGrid();
+            BindGrid();
         }
         #endregion
 
         //#region Action function
         //// Action on datagrid table
-        //private void GvData_RowCommand(object sender, GridViewCommandEventArgs e)
-        //{
-        //    var IDS = e.CommandArgument;
-        //    switch (e.CommandName)
-        //    {
-        //        case "ubah":
-        //            SetLayout(ModeForm.UpdateData);
-        //            LoadDetail(IDS.ToString().Trim());
-        //            break;
+        private void GvData_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            var IDS = e.CommandArgument;
+            switch (e.CommandName)
+            {
+                case "ubah":
+                    SetLayout(ModeForm.UpdateData);
+                    LoadDetail(IDS.ToString().Trim());
+                    break;
 
-        //        case "hapus":
-        //            DoDelete(IDS.ToString().Trim());
-        //            break;
+                case "hapus":
+                    DoDelete(IDS.ToString().Trim());
+                    break;
 
-        //        case "lihat":
-        //            SetLayout(ModeForm.DetailData);
-        //            LoadDetail(IDS.ToString().Trim());
-        //            break;
-        //    }
-        //}
+                case "lihat":
+                    SetLayout(ModeForm.DetailData);
+                    LoadDetail(IDS.ToString().Trim());
+                    break;
+            }
+        }
         //// Action Field
         protected void ActionButton(object sender, EventArgs e)
         {
@@ -268,9 +320,9 @@ namespace TestSmartClass.Pages.Private
                         SetLayout(ModeForm.AddData);
                         break;
 
-                    //case "update":
-                    //    DoUpdate();
-                    //    break;
+                    case "update":
+                        DoUpdate();
+                        break;
 
                     case "cancel":
                         SetLayout(ModeForm.ViewData);
@@ -329,23 +381,20 @@ namespace TestSmartClass.Pages.Private
                     //TxtAccountNo.Enabled = true;
                     break;
 
-                //case ModeForm.UpdateData:
-                //    GenerateAccount();
-                //    PanelGrid.Visible = false;
-                //    PanelInput.Visible = true;
-                //    TxtCustomerName.Enabled = true;
-                //    TxtCusEmail.Enabled = true;
-                //    TxtCompanyName.Enabled = true;
-                //    TxtCompanyAddress.Enabled = true;
-                //    TxtPhoneNo.Enabled = true;
-                //    TxtComEmail.Enabled = true;
-                //    TxtAccountNo.Enabled = true;
-                //    BtnSave.Visible = false;
-                //    BtnUpdate.Visible = true;
-                //    break;
+                case ModeForm.UpdateData:
+                    //GenerateAccount();
+                    PanelGrid.Visible = false;
+                    PanelInput.Visible = true;
+                    TxtId.Enabled = true;
+                    TxtNim.Enabled = true;
+                    TxtNama.Enabled = true;
+                    TxtEmail.Enabled = true;
+                    BtnSave.Visible = false;
+                    BtnUpdate.Visible = true;
+                    break;
 
                 case ModeForm.ViewData:
-                    RefreshGrid();
+                    BindGrid();
                     PanelGrid.Visible = true;
                     PanelInput.Visible = false;
                     break;
@@ -369,4 +418,5 @@ namespace TestSmartClass.Pages.Private
         ////#endregion
 
     }
+
 }

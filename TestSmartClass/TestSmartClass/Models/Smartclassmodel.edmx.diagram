@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7de1dabc50c24b3fbdd834d510a1ef81" Name="Diagram1">
+      <Diagram DiagramId="25776e9a90694ca5866b3d8955016b3a" Name="Diagram1">
         <EntityTypeShape EntityType="smartclassdbModel.absen_tbl" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="smartclassdbModel.dosen_tbl" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="smartclassdbModel.jadwal_tbl" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />

@@ -72,7 +72,7 @@
                 <div class="card-footer">
                   <asp:Button ID="BtnSave" ValidationGroup="vg1" CssClass="btn btn-warning" runat="server" Text="Simpan" CommandName="save" OnClick="ActionButton"/>
                       <asp:Button ID="BtnCancel" CssClass="btn btn-danger" runat="server" Text="Kembali" CommandName="cancel" OnClick="ActionButton"/>
-                    <asp:Button ID="BtnUpdate" ValidationGroup="vg1" CssClass="btn btn-success" runat="server" Text="Ubah" CommandName="update"/>
+                    <asp:Button ID="BtnUpdate" ValidationGroup="vg1" CssClass="btn btn-success" runat="server" Text="Ubah" CommandName="update" OnClick="ActionButton"/>
                   <asp:ValidationSummary ValidationGroup="vg1" ShowSummary="false" ShowMessageBox="false" ID="ValidationSummary1" runat="server" />
                 </div>
               </form>
