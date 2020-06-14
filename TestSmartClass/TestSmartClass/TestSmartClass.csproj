@@ -280,7 +280,12 @@
       <DependentUpon>Smartclassmodel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Pages\Private\MasterDosen.aspx" />
+    <Content Include="Pages\Private\MasterJadwal.aspx" />
+    <Content Include="Pages\Private\MasterKelas.aspx" />
     <Content Include="Pages\Private\MasterMahasiswa.aspx" />
+    <Content Include="Pages\Private\MasterMatkul.aspx" />
+    <Content Include="Pages\Private\MasterRuangkuliah.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -389,12 +394,47 @@
     <Compile Include="Pages\Master\Main.Master.designer.cs">
       <DependentUpon>Main.Master</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Private\MasterDosen.aspx.cs">
+      <DependentUpon>MasterDosen.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\MasterDosen.aspx.designer.cs">
+      <DependentUpon>MasterDosen.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\MasterJadwal.aspx.cs">
+      <DependentUpon>MasterJadwal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\MasterJadwal.aspx.designer.cs">
+      <DependentUpon>MasterJadwal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\MasterKelas.aspx.cs">
+      <DependentUpon>MasterKelas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\MasterKelas.aspx.designer.cs">
+      <DependentUpon>MasterKelas.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Private\MasterMahasiswa.aspx.cs">
       <DependentUpon>MasterMahasiswa.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Private\MasterMahasiswa.aspx.designer.cs">
       <DependentUpon>MasterMahasiswa.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\MasterMatkul.aspx.cs">
+      <DependentUpon>MasterMatkul.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\MasterMatkul.aspx.designer.cs">
+      <DependentUpon>MasterMatkul.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Private\MasterRuangkuliah.aspx.cs">
+      <DependentUpon>MasterRuangkuliah.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Private\MasterRuangkuliah.aspx.designer.cs">
+      <DependentUpon>MasterRuangkuliah.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
