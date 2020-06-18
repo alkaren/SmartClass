@@ -11,31 +11,95 @@ dir_path = os.path.dirname(os.path.realpath(__file__))
 # print(dir_path)
 strclass=dir_path.split('\\')
 n=len(strclass)
-classname = str(strclass[n-1])
-# print(classname)
-
+roomname = str(strclass[n-1])
+# print(roomname)
 
 # connection
 connection=pymysql.connect(db='smartclassdb', user='root', passwd='', host='localhost', port=3306)
 cursor = connection.cursor() 
 
+# mendapatkan id ruangan dari nama folder template
+sqlruang = "SELECT id_ruang from ruangkuliah_tbl where nama_ruang=%s"
+cursor.execute(sqlruang, roomname)
+roomid = cursor.fetchall()
+for x in roomid:
+    idruang = x[0]
+    # print(idkelas)
+
 # get id class
-sqldir = "SELECT id_kelas from kelas_tbl where nama_kelas=%s"
-cursor.execute(sqldir, classname)
+datejdwl = datetime.datetime.now().strftime("%Y-%m-%d")
+sqldir = "SELECT id_kelas from jadwal_tbl where id_ruang=%s and tanggal_jadwal=%s"
+cursor.execute(sqldir, (idruang,datejdwl))
 classid = cursor.fetchall()
 for x in classid:
     idkelas = x[0]
-    # print(idkelas)
+    print(idkelas)
+
+sqlnameclass = "SELECT nama_kelas,usemodel from kelas_tbl where id_kelas=%s"
+cursor.execute(sqlnameclass, idkelas)
+nameclass = cursor.fetchall()
+for x in nameclass:
+    namakelas = x[0]
+    modelofuse = x[1]
+    print(modelofuse)
 
 #This module captures images via webcam and performs face recognition
 face_recognizer = cv2.face.LBPHFaceRecognizer_create()
 # face_recognizer.read('/STUDY/Machine Learning/ProjekKehususan/trainingDataPK.yml')#Load saved training data
-pathmodel = dir_path.replace("\\","/") + "/" + classname + ".yml"
+pathmodel = modelofuse + "/" + namakelas + ".yml"
 print(pathmodel)
 face_recognizer.read(pathmodel)#Load saved training data
 
-name = {0 : "Alka",1 : "Aji",2 : "Aldred",3:"Wahid"}
+# menghitung jumlah mahasiswa yg berada dalam jadwal
+sqlmhs = "SELECT COUNT(NIM) FROM mahasiswa_tbl WHERE id_kelas = %s"
+cursor.execute(sqlmhs, idkelas)
+jmlmhsw = cursor.fetchall()
 
+# hitung jumlah folder training alias untuk menghitung jumlah siswa
+countfolderpath = dir_path + "\\" + "TrainingImages" + "\\" + namakelas
+filesX = foldersX = 0
+
+for _, dirnames, filenames in os.walk(countfolderpath):
+  # ^ this idiom means "we won't be using this value"
+    filesX += len(filenames)
+    foldersX += len(dirnames)
+
+nums = foldersX
+# print(nums)
+
+# Create your dictionary class 
+class my_dictionary(dict): 
+  
+    # __init__ function 
+    def __init__(self): 
+        self = dict() 
+          
+    # Function to add key:value 
+    def add(self, key, value): 
+        self[key] = value 
+  
+# Main Function 
+dict_obj = my_dictionary()   
+
+i = 0
+# print(dict_obj)
+if dict_obj == {}:
+    # print("empty")
+    while (i<nums):
+        i = i+1
+        sqlnims = "SELECT NIM FROM mahasiswa_tbl where id_kelas=%s and id=%s"
+        cursor.execute(sqlnims, (idkelas,i))
+        disctionrynew = cursor.fetchall()
+        for x in disctionrynew:
+            dict_obj.add(i, x[0])
+            print(i)
+            print(dict_obj)
+else:
+    print("no empty")
+
+print(dict_obj)
+
+# name = {1 : "Alka",2 : "Aji",3 : "Aldred",4:"Wahid"}
 # source = 'http://192.168.1.7:8080//video?dummy=param.mjpg'
 # cap=cv2.VideoCapture(0,cv2.CAP_DSHOW)
 # cap=cv2.VideoCapture(0,cv2.CAP_DSHOW)
@@ -93,7 +157,7 @@ while True:
         print("confidence:",confidence)
         print("label:",label)
         fr.draw_rect(test_img,face)
-        predicted_name=name[label]
+        predicted_name=dict_obj[label]
         if confidence < 30 :#If confidence less than 37 then don't print predicted face text on screen
            fr.put_text(test_img,predicted_name,x,y)
            try:
